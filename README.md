@@ -8,6 +8,25 @@ Built for the theme: **"Build the Future of HR Management with AI-Powered Soluti
 
 ---
 
+## 🌐 Live Demo
+
+### 👉 **[https://ai-hrms-mx2e.onrender.com](https://ai-hrms-mx2e.onrender.com)**
+
+**Demo logins** — password for all accounts: **`password123`**
+
+| Role | Email |
+|------|-------|
+| Management Admin | `admin@hrms.com` |
+| Senior Manager | `manager@hrms.com` |
+| HR Recruiter | `recruiter@hrms.com` |
+| Employee | `employee@hrms.com` |
+
+> 🧑‍💼 **Public careers portal** (apply + AI screening, no login): **[/careers](https://ai-hrms-mx2e.onrender.com/careers)**
+>
+> ⏳ *Hosted on a free tier — the first load after idle may take ~30–50s to wake up.*
+
+---
+
 ## ✨ Features
 
 ### Core HRMS
@@ -94,22 +113,10 @@ performance reviews, jobs and pre-screened candidates.
 ```bash
 npm run dev
 ```
-- API → http://localhost:5050
-- Web app → http://localhost:5173
+This starts the API and the web app together; Vite prints the local web address in your
+terminal. Log in with the [demo credentials](#-live-demo) above.
 
----
-
-## 🔑 Demo Logins
-All passwords: **`password123`**
-
-| Role | Email |
-|------|-------|
-| Management Admin | `admin@hrms.com` |
-| Senior Manager | `manager@hrms.com` |
-| HR Recruiter | `recruiter@hrms.com` |
-| Employee | `employee@hrms.com` |
-
-Public careers portal (no login): <http://localhost:5173/careers>
+> 🌐 Prefer not to run it locally? Use the hosted version: **[https://ai-hrms-mx2e.onrender.com](https://ai-hrms-mx2e.onrender.com)**
 
 ---
 

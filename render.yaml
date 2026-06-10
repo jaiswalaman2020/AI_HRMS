@@ -1,0 +1,24 @@
+# Render Blueprint — one service that serves the API + built React app.
+# In the Render dashboard: New → Blueprint → pick this repo, then fill in the
+# env vars marked sync:false (they are NOT stored in the repo).
+services:
+  - type: web
+    name: ai-hrms
+    runtime: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true # Render generates a strong random secret
+      - key: MONGO_URI
+        sync: false # paste your MongoDB Atlas connection string
+      - key: AI_API_KEY
+        sync: false # your Groq key (gsk_...)
+      - key: AI_BASE_URL
+        value: https://api.groq.com/openai/v1
+      - key: AI_MODEL
+        value: llama-3.3-70b-versatile

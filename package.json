@@ -9,7 +9,8 @@
     "server": "npm run dev --prefix server",
     "client": "npm run dev --prefix client",
     "seed": "npm run seed --prefix server",
-    "build": "npm run build --prefix client"
+    "build": "npm run install:all && npm run build --prefix client",
+    "start": "node server/src/index.js"
   },
   "devDependencies": {
     "concurrently": "^9.1.0"

@@ -3,6 +3,10 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 import authRoutes from './routes/auth.js';
 import employeeRoutes from './routes/employees.js';
@@ -18,7 +22,8 @@ import { notFound, errorHandler } from './middleware/error.js';
 export function createApp() {
   const app = express();
 
-  app.use(helmet());
+  // CSP disabled so the bundled SPA's assets load without extra config.
+  app.use(helmet({ contentSecurityPolicy: false }));
   app.use(
     cors({
       origin: process.env.CLIENT_URL || '*',
@@ -46,6 +51,18 @@ export function createApp() {
   app.use('/api/recruitment', recruitmentRoutes);
   app.use('/api/dashboard', dashboardRoutes);
   app.use('/api/ai', aiRoutes);
+
+  // In production, serve the built React app from the same origin so the
+  // frontend, API and Socket.io all share one URL (no CORS / proxy needed).
+  if (process.env.NODE_ENV === 'production') {
+    const clientDist = path.resolve(__dirname, '../../client/dist');
+    app.use(express.static(clientDist));
+    // SPA fallback: any non-API GET returns index.html so client-side routing works.
+    app.get('*', (req, res, next) => {
+      if (req.path.startsWith('/api') || req.path.startsWith('/socket.io')) return next();
+      res.sendFile(path.join(clientDist, 'index.html'));
+    });
+  }
 
   app.use(notFound);
   app.use(errorHandler);

@@ -9,7 +9,7 @@
     "server": "npm run dev --prefix server",
     "client": "npm run dev --prefix client",
     "seed": "npm run seed --prefix server",
-    "build": "npm run install:all && npm run build --prefix client",
+    "build": "npm install && npm install --prefix server && npm install --include=dev --prefix client && npm run build --prefix client",
     "start": "node server/src/index.js"
   },
   "devDependencies": {
